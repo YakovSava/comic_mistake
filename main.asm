@@ -9,21 +9,23 @@ section '.data' data readable writeable
 
 section '.code' code readable executable
 	start:
-		mov ecx, 5
-		mov eax, 0
+		mov ebx, 5
 
 		repeat_loop:
+			push ebx
 			push (MB_ICONERROR or MB_OKCANCEL)
 			push caption
 			push message
 			push 0
 			call [MessageBoxA]
 
-			add eax, 2
-			loop repeat_loop
+			sub ebx, 1
+			cmp ebx, 0
+			jne repeat_loop
 
-		push 0
-		call [ExitProcess]
+		endprog:
+			push 0
+			call [ExitProcess]
 
 section '.idata' import data readable writeable
 	library kernel32, 'kernel32.dll',\
