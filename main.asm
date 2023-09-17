@@ -13,7 +13,7 @@ section '.code' code readable executable
 		mov eax, 0
 
 		repeat_loop:
-			push (MB_ICONERROR or MB_OK or MB_CANCEL)
+			push (MB_ICONERROR or MB_OKCANCEL)
 			push caption
 			push message
 			push 0
